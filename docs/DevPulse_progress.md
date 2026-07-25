@@ -66,14 +66,16 @@ Knowledge Check:
 - ✓ Can explain Domain Model.
 - ✓ Can identify entity relationships.
 - ✓ Understands Request Lifecycle.
+_____________________________________________
+# Phase 1 - Foundation
 
-## Phase 1 - Foundation
-
-### Lesson 1.1 Project Setup
+## Lesson 1.1 Project Setup
 
 Status: Completed
 
 Completed:
+
+### Laravel Installation & Environment
 - Created Laravel 12 project using Composer.
 - Explored Laravel project structure.
 - Understood the purpose of:
@@ -85,88 +87,383 @@ Completed:
   - composer.json
   - composer.lock
   - vendor
-- Understood Laravel Migration concepts:
-  - Purpose of migrations
-  - up() and down()
-  - Database schema versioning
 - Configured the .env file.
-- Connected the application to the database.
-- Executed the initial migrations successfully.
+- Connected the application to MySQL database.
+- Executed initial migrations successfully.
 - Verified the application runs correctly.
 
+### Database Foundation
+- Understood Laravel Migration concepts:
+  - Purpose of migrations.
+  - up() and down() methods.
+  - Database schema versioning.
+- Understood the difference between:
+  - Migration responsibility.
+  - Model responsibility.
+- Understood database relationships:
+  - One To Many.
+  - Many To Many.
+  - Foreign keys.
+  - Pivot tables.
+- Reviewed DevPulse database design:
+  - Category → Posts.
+  - Post → Comments.
+  - Post ↔ Tags.
+
+### Git Foundation
+- Initialized Git repository.
+- Understood:
+  - Repository concept.
+  - .git directory.
+  - Working Directory.
+  - Staging Area.
+  - Commit history.
+- Learned Git workflow:
+  - git status
+  - git add
+  - git commit
+  - git log
+- Created initial project commits:
+  - Initial Laravel project setup.
+  - Update project README.
+- Understood the purpose of commits as project history checkpoints.
+
 Knowledge Check:
-- ✓ Understands Laravel project structure.
-- ✓ Understands Composer dependency management.
-- ✓ Understands the purpose of migrations.
-- ✓ Can explain the difference between up() and down().
-__________________________________
+
+✓ Understands Laravel project structure.
+✓ Understands Composer dependency management.
+✓ Understands migrations and database versioning.
+✓ Understands difference between Migration and Model.
+✓ Understands basic database relationships.
+✓ Understands Git repository workflow.
+✓ Can create and read project commits.
+
+---
+
+Lesson 1.2 Project Structure
+
+Part 1: Laravel Layers
+Status: Completed
+
+Completed:
+✓ app directory
+✓ Models
+✓ Controllers
+✓ Requests
+✓ Resources
+✓ Policies
+✓ Database relationship placement
+
+
+Part 2: Application Flow
+
+Status: Completed
+
+Completed:
+
+✓ Understood Laravel request lifecycle.
+✓ Understood application entry point.
+✓ Understood Route responsibility.
+✓ Understood Middleware role.
+✓ Understood Controller responsibility.
+✓ Understood Validation flow using Form Requests.
+✓ Understood Resource transformation.
+✓ Understood separation of responsibilities between layers.
+
+Knowledge Check:
+
+✓ Can explain request flow from Client to Response.
+✓ Can explain Middleware purpose.
+✓ Can explain why Validation is separated.
+✓ Can explain the role of API Resources.
+
+
+Part 3: Service Architecture
+Status: Completed
+
+Topics:
+✓ Service layer
+✓ Business logic separation
+✓ When to use Services
+
 Current Phase:
+
 Phase 1 - Foundation
 
-Topics: - Laravel setup - Environment - Git - Database
+Topics:
 
-### Project Structure
+✓ Laravel setup
+✓ Environment
+✓ Git
+✓ Database
+✓ Application Architecture
+________________________________________________
+________________________________________________
 
-Status: Pending
+## Phase 2 - Identity & Access
 
-Topics: - Controllers - Requests - Resources - Services
-
-## Phase 2 - Security
-
-### Authentication
-
-Status: Pending
-
-Topics: - Sanctum - Register - Login - Tokens
-
-### Authorization
+### Feature 2.1 User Registration
 
 Status: Pending
 
-Topics: - Policies - Roles - Permissions
+Topics:
+- Registration Flow
+- Register Endpoint
+- Form Request Validation
+- Password Hashing
+- User Creation
+- Sanctum Token Generation
+- API Response
+- Testing
 
-## Phase 3 - Database
+---
 
-Status: Pending
-
-Topics: - Migrations - Eloquent - Relationships - Optimization
-
-## Phase 4 - Features
-
-Posts: Pending
-
-Categories: Pending
-
-Tags: Pending
-
-Comments: Pending
-
-## Phase 5 - Advanced Laravel
-
-Topics: - Services - Events - Jobs - Queues - Cache
+### Feature 2.2 User Login
 
 Status: Pending
 
-## Phase 6 - Quality
+Topics:
+- Authentication Flow
+- Login Endpoint
+- Credentials Validation
+- Token Creation
+- Invalid Credentials Handling
+- Testing
 
-Topics: - Testing - Documentation - Review
+---
+
+### Feature 2.3 User Logout
 
 Status: Pending
 
-## Phase 7 - Production
+Topics:
+- Logout Current Device
+- Logout All Devices
+- Token Revocation
+- Testing
 
-Topics: - Docker - Deployment - Monitoring
+---
+
+### Feature 2.4 Authenticated User
 
 Status: Pending
 
-## Trainer Notes
+Topics:
+- Protected Routes
+- auth:sanctum Middleware
+- Current Authenticated User
+- Testing
 
-## Completed:
+---
 
-## Weak Points:
+### Feature 2.5 Authorization
 
-## Important Decisions:
+Status: Pending
 
-## Current Lesson:
+Topics:
+- Policies
+- Ownership Rules
+- Admin Authorization
+- Testing
 
-Next Lesson: Lesson 0.1 Requirement Analysis
+________________________________________________
+
+## Phase 3 - Categories
+
+### Feature 3.1 Categories CRUD
+
+Status: Pending
+
+Topics:
+- Create Category
+- Update Category
+- Delete Category
+- List Categories
+- Validation
+- API Resources
+- Testing
+
+________________________________________________
+
+## Phase 4 - Posts
+
+### Feature 4.1 Posts CRUD
+
+Status: Pending
+
+Topics:
+- Create Post
+- Update Post
+- Delete Post
+- Show Post
+- List Posts
+- Category Relationship
+- Validation
+- API Resources
+- Testing
+
+---
+
+### Feature 4.2 Post Images
+
+Status: Pending
+
+Topics:
+- Upload Image
+- Replace Image
+- Delete Image
+- File Validation
+- Storage
+- Testing
+
+---
+
+### Feature 4.3 Pagination
+
+Status: Pending
+
+Topics:
+- Pagination
+- Sorting
+- Filtering
+- Performance
+
+________________________________________________
+
+## Phase 5 - Tags
+
+### Feature 5.1 Tags CRUD
+
+Status: Pending
+
+Topics:
+- Create Tag
+- Update Tag
+- Delete Tag
+- List Tags
+- Validation
+- Testing
+
+---
+
+### Feature 5.2 Post Tags
+
+Status: Pending
+
+Topics:
+- Attach Tags
+- Sync Tags
+- Detach Tags
+- Many-to-Many Relationship
+- Testing
+
+________________________________________________
+
+## Phase 6 - Comments
+
+### Feature 6.1 Comments CRUD
+
+Status: Pending
+
+Topics:
+- Create Comment
+- Update Comment
+- Delete Comment
+- List Comments
+- Validation
+- Testing
+
+---
+
+### Feature 6.2 Comment Authorization
+
+Status: Pending
+
+Topics:
+- Comment Ownership
+- Policies
+- Testing
+
+________________________________________________
+
+## Phase 7 - Search
+
+### Feature 7.1 Search & Filtering
+
+Status: Pending
+
+Topics:
+- Search
+- Filtering
+- Sorting
+- Pagination
+- Performance
+- Testing
+
+________________________________________________
+
+## Phase 8 - API Quality
+
+### Feature 8.1 API Resources
+
+Status: Pending
+
+Topics:
+- Resource Collections
+- Resource Responses
+- Response Standardization
+
+---
+
+### Feature 8.2 Error Handling
+
+Status: Pending
+
+Topics:
+- Validation Errors
+- Authentication Errors
+- Authorization Errors
+- Exception Handling
+
+---
+
+### Feature 8.3 API Standards
+
+Status: Pending
+
+Topics:
+- HTTP Status Codes
+- REST Best Practices
+- JSON Response Structure
+
+________________________________________________
+
+## Phase 9 - Testing
+
+### Feature 9.1 Feature Testing
+
+Status: Pending
+
+### Feature 9.2 Unit Testing
+
+Status: Pending
+
+### Feature 9.3 API Testing
+
+Status: Pending
+
+________________________________________________
+
+## Phase 10 - Deployment
+
+### Production Deployment
+
+Status: Pending
+
+Topics:
+- Production Environment
+- Configuration
+- Cache
+- Queues
+- Logging
+- Optimization
