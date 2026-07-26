@@ -202,33 +202,32 @@ ________________________________________________
 
 ## Phase 2 - Identity & Access
 
-### Feature 2.1 User Registration
+## Feature 2.1 User Registration
 
-Status: Pending
+Status: Completed
 
 Topics:
-- Registration Flow
-- Register Endpoint
-- Form Request Validation
-- Password Hashing
-- User Creation
-- Sanctum Token Generation
-- API Response
-- Testing
+- ✅ Registration Flow
+- ✅ Register Endpoint
+- ✅ Form Request Validation
+- ✅ Password Hashing
+- ✅ User Creation
+- ✅ Sanctum Token Generation
+- ✅ API Response
+- ✅ Testing
 
 ---
-
 ### Feature 2.2 User Login
 
-Status: Pending
+Status: Completed
 
 Topics:
-- Authentication Flow
-- Login Endpoint
-- Credentials Validation
-- Token Creation
-- Invalid Credentials Handling
-- Testing
+- ✅ Authentication Flow
+- ✅ Login Endpoint
+- ✅ Credentials Validation
+- ✅ Token Creation
+- ✅ Invalid Credentials Handling
+- ✅ Testing
 
 ---
 
@@ -467,3 +466,15 @@ Topics:
 - Queues
 - Logging
 - Optimization
+
+
+### Trainer Notes
+## Completed
+
+- Completed User Registration feature.
+- Completed User Login feature.
+- Understood the difference between Validation and Business Logic.
+- Learned Dependency Injection in Controllers.
+- Learned Hash::make() vs Hash::check().
+- Learned Sanctum Token generation.
+- Tested API endpoints using Bruno.
