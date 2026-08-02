@@ -236,7 +236,7 @@ Topics:
 Status: Pending
 
 Topics:
-- Logout Current Device
+  ✅ Logout Current Device
 - Logout All Devices
 - Token Revocation
 - Testing

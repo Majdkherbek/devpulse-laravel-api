@@ -111,6 +111,7 @@ Resource:
 
 ---
 
+
 # Git Knowledge
 
 Repository initialized.
@@ -142,6 +143,66 @@ git log
 Branches postponed until needed.
 
 ---
+# Authentication Knowledge
+
+Authentication Flow:
+
+Client
+ ↓
+Route
+ ↓
+Form Request
+ ↓
+Controller
+ ↓
+Service
+ ↓
+Model
+ ↓
+Database
+ ↓
+Response
+
+Completed:
+
+- Implemented User Registration.
+- Implemented User Login.
+- Created RegisterRequest.
+- Created LoginRequest.
+- Built AuthController.
+- Built AuthService.
+- Used Dependency Injection for services.
+- Used User::create() for registration.
+- Used User::where()->first() for user lookup.
+- Learned Password Hashing using Hash::make().
+- Learned Password Verification using Hash::check().
+- Generated Sanctum Personal Access Tokens.
+- Tested authentication endpoints using Bruno.
+
+Concepts Learned:
+
+Validation
+- Responsible for validating request format only.
+
+Business Logic
+- Lives inside Services.
+- Responsible for authentication decisions.
+
+Controller
+- Coordinates execution only.
+- Returns HTTP responses.
+- Contains no business logic.
+
+Sanctum
+- Generates Personal Access Tokens.
+- Allows stateless API authentication.
+- Each login creates a new token.
+
+Error Handling
+
+- Validation errors belong to Form Requests.
+- Authentication errors belong to AuthService.
+- Login should return generic "Invalid credentials" message.
 
 # Current Status
 
@@ -157,13 +218,16 @@ Completed:
 ✓ Service Architecture
 
 
-Next:
+Next
 
-Phase 2:
-Core Development
+Feature 2.3
+User Logout
 
-First tasks:
-- Review existing Models.
-- Review migrations.
-- Verify relationships.
-- Start API implementation.
+Upcoming Topics
+
+- Protected Routes
+- auth:sanctum Middleware
+- Current Authenticated User
+- Logout Current Device
+- Logout All Devices
+- Token Revocation
