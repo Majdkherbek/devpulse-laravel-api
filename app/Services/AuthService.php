@@ -50,6 +50,10 @@ class AuthService
     {
         $user->currentAccessToken()->delete();
     }
+    public function logoutAllDevices(User $user): void
+    {
+        $user->tokens()->delete();
+    }
 
 
 }

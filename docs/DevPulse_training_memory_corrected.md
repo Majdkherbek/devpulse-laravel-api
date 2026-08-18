@@ -177,7 +177,12 @@ Completed:
 - Learned Password Hashing using Hash::make().
 - Learned Password Verification using Hash::check().
 - Generated Sanctum Personal Access Tokens.
-- Tested authentication endpoints using Bruno.
+- Understood that each login creates a separate Personal Access Token.
+- Understood the `personal_access_tokens` table and the relationship between a user and multiple tokens.
+- Implemented Logout Current Device using the current access token.
+- Implemented Logout All Devices by deleting all tokens belonging to the user.
+- Understood Token Revocation.
+- Tested registration, login, authenticated access, current-device logout, and all-devices logout using Bruno.
 
 Concepts Learned:
 
@@ -220,14 +225,12 @@ Completed:
 
 Next
 
-Feature 2.3
-User Logout
+Feature 2.4
+Authenticated User
 
 Upcoming Topics
 
 - Protected Routes
 - auth:sanctum Middleware
 - Current Authenticated User
-- Logout Current Device
-- Logout All Devices
-- Token Revocation
+- Testing

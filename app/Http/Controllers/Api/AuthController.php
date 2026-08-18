@@ -40,6 +40,13 @@ class AuthController extends Controller
             'message' => 'Logged out successfully.',
         ], 200);
     }
+    public function logoutAllDevices(Request $request): JsonResponse
+    {
+        $this->authService->logoutAllDevices($request->user());
+        return response()->json([
+            'message'=>'Logged out from all devices successfully.'
+        ],200);
+    }
 
 }
 

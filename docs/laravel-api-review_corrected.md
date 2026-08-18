@@ -1160,7 +1160,10 @@ class AuthService
         $user->currentAccessToken()->delete();
     }
 
-
+    public function logoutAllDevices(User $user): void
+    {
+        $user->tokens()->delete();
+    }
 }
 </file>
 
@@ -3364,9 +3367,11 @@ Reason: أفضل للتعلم والصيانة.
 
 ## Current State
 
-Phase: Planning
+Phase: 2 - Identity & Access
 
-Next: Requirement Analysis
+Completed: User Registration, User Login, User Logout
+
+Next: Feature 2.4 - Authenticated User
 </file>
 
 <file path="docs/DevPulse_training_memory.md">
@@ -3549,7 +3554,12 @@ Completed:
 - Learned Password Hashing using Hash::make().
 - Learned Password Verification using Hash::check().
 - Generated Sanctum Personal Access Tokens.
-- Tested authentication endpoints using Bruno.
+- Understood that each login creates a separate Personal Access Token.
+- Understood the `personal_access_tokens` table and the relationship between a user and multiple tokens.
+- Implemented Logout Current Device using the current access token.
+- Implemented Logout All Devices by deleting all tokens belonging to the user.
+- Understood Token Revocation.
+- Tested registration, login, authenticated access, current-device logout, and all-devices logout using Bruno.
 
 Concepts Learned:
 
@@ -3578,31 +3588,24 @@ Error Handling
 
 # Current Status
 
-Phase 1 Foundation:
+Phase 2 - Identity & Access
 
 Completed:
-✓ Setup
-✓ Environment
-✓ Database basics
-✓ Git basics
-✓ Project Structure
-✓ Application Flow
-✓ Service Architecture
-
+✓ Feature 2.1 User Registration
+✓ Feature 2.2 User Login
+✓ Feature 2.3 User Logout
 
 Next
 
-Feature 2.3
-User Logout
+Feature 2.4
+Authenticated User
 
 Upcoming Topics
 
 - Protected Routes
 - auth:sanctum Middleware
 - Current Authenticated User
-- Logout Current Device
-- Logout All Devices
-- Token Revocation
+- Testing
 </file>
 
 <file path="package.json">
@@ -4124,6 +4127,14 @@ class AuthController extends Controller
         ], 200);
     }
 
+    public function logoutAllDevices(Request $request): JsonResponse
+    {
+        $this->authService->logoutAllDevices($request->user());
+
+        return response()->json([
+            'message' => 'logged all devices successfully',
+        ], 200);
+    }
 }
 </file>
 
@@ -4303,11 +4314,11 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login',[AuthController::class,'login']);
-Route::middleware('auth:sanctum')->group(
-    function(){
-        Route::post('/logout',[AuthController::class,'logout']);
-    }
-);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/logout-all-devices', [AuthController::class, 'logoutAllDevices']);
+});
 </file>
 
 <file path="docs/DevPulse_progress.md">
@@ -4546,13 +4557,12 @@ Topics:
 
 ### Feature 2.3 User Logout
 
-Status: Pending
+Status: Completed
 
-Topics:
-- Logout Current Device
-- Logout All Devices
-- Token Revocation
-- Testing
+- ✅ Logout Current Device
+- ✅ Logout All Devices
+- ✅ Token Revocation
+- ✅ Testing
 
 ---
 
@@ -4786,6 +4796,10 @@ Topics:
 
 - Completed User Registration feature.
 - Completed User Login feature.
+- Completed User Logout feature.
+- Verified Current Device Logout using Bruno.
+- Verified Logout All Devices using multiple Sanctum tokens and Bruno.
+- Verified Token Revocation by reusing revoked tokens and receiving `401 Unauthorized`.
 - Understood the difference between Validation and Business Logic.
 - Learned Dependency Injection in Controllers.
 - Learned Hash::make() vs Hash::check().

@@ -11,9 +11,8 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login',[AuthController::class,'login']);
-Route::middleware('auth:sanctum')->group(
-    function(){
-        Route::post('/logout',[AuthController::class,'logout']);
-    }
-);
-    
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/logout-all-devices', [AuthController::class, 'logoutAllDevices']);
+}); 

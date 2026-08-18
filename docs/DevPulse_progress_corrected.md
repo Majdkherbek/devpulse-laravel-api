@@ -233,13 +233,12 @@ Topics:
 
 ### Feature 2.3 User Logout
 
-Status: Pending
+Status: Completed
 
-Topics:
-  ✅ Logout Current Device
-- Logout All Devices
-- Token Revocation
-- Testing
+- ✅ Logout Current Device
+- ✅ Logout All Devices
+- ✅ Token Revocation
+- ✅ Testing
 
 ---
 
@@ -473,6 +472,10 @@ Topics:
 
 - Completed User Registration feature.
 - Completed User Login feature.
+- Completed User Logout feature.
+- Verified Current Device Logout using Bruno.
+- Verified Logout All Devices using multiple Sanctum tokens and Bruno.
+- Verified Token Revocation by reusing revoked tokens and receiving `401 Unauthorized`.
 - Understood the difference between Validation and Business Logic.
 - Learned Dependency Injection in Controllers.
 - Learned Hash::make() vs Hash::check().
