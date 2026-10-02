@@ -13,7 +13,7 @@ class AuthService
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => $data['password'],
         ]);
         $token = $user->createToken('api-token')->plainTextToken;
 
@@ -21,7 +21,6 @@ class AuthService
             'user' => $user,
             'token' => $token,
         ];
-        
     }
     public function login(array $data)
     {
