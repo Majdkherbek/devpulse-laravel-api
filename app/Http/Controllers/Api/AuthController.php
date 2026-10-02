@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
+use App\Services\AuthService;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Resources\UserResource;
+use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
-use App\Services\AuthService;
 
 
 class AuthController extends Controller
@@ -24,7 +24,7 @@ class AuthController extends Controller
         $user= $this->authService->register($request->validated());
         return response()->json($user,201);
 
-    } 
+    }
     public function login(LoginRequest $request)
     {
         $user = $this->authService->login($request->validated());
@@ -46,6 +46,10 @@ class AuthController extends Controller
         return response()->json([
             'message'=>'Logged out from all devices successfully.'
         ],200);
+    }
+     public function user(Request $request): UserResource
+    {
+      return new UserResource($request->user());
     }
 
 }

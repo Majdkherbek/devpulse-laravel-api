@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
@@ -13,7 +14,7 @@ class AuthService
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => $data['password'],
+            'password' => Hash::make($data['password']),
         ]);
         $token = $user->createToken('api-token')->plainTextToken;
 
@@ -21,6 +22,7 @@ class AuthService
             'user' => $user,
             'token' => $token,
         ];
+
     }
     public function login(array $data)
     {
@@ -53,6 +55,10 @@ class AuthService
     {
         $user->tokens()->delete();
     }
+
+
+
+
 
 
 }
