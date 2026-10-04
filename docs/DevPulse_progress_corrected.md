@@ -270,16 +270,16 @@ ________________________________________________
 
 ### Feature 3.1 Categories CRUD
 
-Status: Pending
+Status: Completed
 
 Topics:
-- Create Category
-- Update Category
-- Delete Category
-- List Categories
-- Validation
-- API Resources
-- Testing
+- ✅ Create Category (Admin Only)
+- ✅ Update Category (Admin Only)
+- ✅ Delete Category (Admin Only)
+- ✅ List Categories & Show Category (Public)
+- ✅ Validation (StoreCategoryRequest & UpdateCategoryRequest)
+- ✅ API Resources (CategoryResource)
+- ✅ Auto-slug generation on Model
 
 ________________________________________________
 
