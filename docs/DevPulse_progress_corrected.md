@@ -244,25 +244,25 @@ Status: Completed
 
 ### Feature 2.4 Authenticated User
 
-Status: Pending
+Status: Completed
 
 Topics:
-- Protected Routes
-- auth:sanctum Middleware
-- Current Authenticated User
-- Testing
+- ✅ Protected Routes
+- ✅ auth:sanctum Middleware
+- ✅ Current Authenticated User using UserResource
+- ✅ Testing in Bruno (200 OK & 401 Unauthorized)
 
 ---
 
 ### Feature 2.5 Authorization
 
-Status: Pending
+Status: Completed
 
 Topics:
-- Policies
-- Ownership Rules
-- Admin Authorization
-- Testing
+- ✅ Policies (PostPolicy & CommentPolicy)
+- ✅ Ownership Rules ($user->id === $model->user_id)
+- ✅ Admin Authorization ($user->is_admin override via before() method)
+- ✅ Testing
 
 ________________________________________________
 
@@ -473,9 +473,14 @@ Topics:
 - Completed User Registration feature.
 - Completed User Login feature.
 - Completed User Logout feature.
+- Completed Authenticated User feature (Feature 2.4).
+- Fixed double password hashing in AuthService register method.
+- Created UserResource for explicit field mapping (id, name, email, created_at).
+- Refactored `/api/user` route from Closure to AuthController@user inside protected Sanctum middleware group.
 - Verified Current Device Logout using Bruno.
 - Verified Logout All Devices using multiple Sanctum tokens and Bruno.
 - Verified Token Revocation by reusing revoked tokens and receiving `401 Unauthorized`.
+- Verified Authenticated User endpoint using Bruno with Bearer Token (200 OK & 401 Unauthorized).
 - Understood the difference between Validation and Business Logic.
 - Learned Dependency Injection in Controllers.
 - Learned Hash::make() vs Hash::check().

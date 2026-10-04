@@ -211,26 +211,22 @@ Error Handling
 
 # Current Status
 
-Phase 1 Foundation:
+Phase 2 Identity & Access:
 
 Completed:
-✓ Setup
-✓ Environment
-✓ Database basics
-✓ Git basics
-✓ Project Structure
-✓ Application Flow
-✓ Service Architecture
-
+✓ Feature 2.1 User Registration
+✓ Feature 2.2 User Login
+✓ Feature 2.3 User Logout
+✓ Feature 2.4 Authenticated User (UserResource & AuthController@user)
 
 Next
 
-Feature 2.4
-Authenticated User
+Feature 2.5
+Authorization & Policies
 
 Upcoming Topics
 
-- Protected Routes
-- auth:sanctum Middleware
-- Current Authenticated User
+- Policies
+- Ownership Rules
+- Admin Authorization
 - Testing
