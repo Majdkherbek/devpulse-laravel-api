@@ -8,12 +8,12 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 class PostCollection extends ResourceCollection
 {
     /**
-     * Transform the resource collection into an array.
-     *
-     * @return array<int|string, mixed>
+     * تشكيل قائمة المقالات مع دعم الترقيم (Pagination).
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'data' => PostResource::collection($this->collection),
+        ];
     }
 }

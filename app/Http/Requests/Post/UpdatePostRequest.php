@@ -2,28 +2,36 @@
 
 namespace App\Http\Requests\Post;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdatePostRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * التحقق من صلاحية المستخدم لتعديل هذا المقال تحديداً عبر Policy.
      */
     public function authorize(): bool
     {
-        return false;
+        $post = $this->route('post');
+
+        return $post && $this->user()?->can('update', $post);
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, ValidationRule|array<mixed>|string>
+     * شروط التحقق عند تعديل المقال.
      */
     public function rules(): array
     {
+        $postId = $this->route('post')?->id ?? $this->route('post');
+
         return [
-            //
+            'category_id' => 'sometimes|required|exists:categories,id',
+            'title'       => 'sometimes|required|string|max:255',
+            'slug'        => ['nullable', 'string', 'max:255', Rule::unique('posts', 'slug')->ignore($postId)],
+            'body'        => 'sometimes|required|string',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'tags'        => 'nullable|array',
+            'tags.*'      => 'exists:tags,id',
         ];
     }
 }

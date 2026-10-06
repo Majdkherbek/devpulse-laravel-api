@@ -2,28 +2,31 @@
 
 namespace App\Http\Requests\Post;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StorePostRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * أي مستخدم مسجل دخوله يحق له إنشاء مقال.
      */
     public function authorize(): bool
     {
-        return false;
+        return $this->user() !== null;
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, ValidationRule|array<mixed>|string>
+     * شروط التحقق عند إنشاء مقال جديد.
      */
     public function rules(): array
     {
         return [
-            //
+            'category_id' => 'required|exists:categories,id',
+            'title'       => 'required|string|max:255',
+            'slug'        => 'nullable|string|max:255|unique:posts,slug',
+            'body'        => 'required|string',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'tags'        => 'nullable|array',
+            'tags.*'      => 'exists:tags,id',
         ];
     }
 }

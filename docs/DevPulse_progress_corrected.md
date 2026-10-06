@@ -285,46 +285,19 @@ ________________________________________________
 
 ## Phase 4 - Posts
 
-### Feature 4.1 Posts CRUD
+### Feature 4.1 Posts CRUD & Images
 
-Status: Pending
-
-Topics:
-- Create Post
-- Update Post
-- Delete Post
-- Show Post
-- List Posts
-- Category Relationship
-- Validation
-- API Resources
-- Testing
-
----
-
-### Feature 4.2 Post Images
-
-Status: Pending
+Status: Completed
 
 Topics:
-- Upload Image
-- Replace Image
-- Delete Image
-- File Validation
-- Storage
-- Testing
-
----
-
-### Feature 4.3 Pagination
-
-Status: Pending
-
-Topics:
-- Pagination
-- Sorting
-- Filtering
-- Performance
+- ✅ Create Post (Authenticated Users)
+- ✅ Update Post (Owner / Admin Only via Policy)
+- ✅ Delete Post (Owner / Admin Only via Policy)
+- ✅ Show Post & List Posts with Pagination (Public)
+- ✅ Upload, Replace & Delete Post Images (Storage::disk('public'))
+- ✅ Filtering & Search (by category_id & title search)
+- ✅ Validation (StorePostRequest & UpdatePostRequest)
+- ✅ API Resources (PostResource & PostCollection)
 
 ________________________________________________
 
