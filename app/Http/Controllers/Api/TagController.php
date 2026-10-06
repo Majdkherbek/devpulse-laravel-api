@@ -3,47 +3,69 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Tag\StoreTagRequest;
+use App\Http\Requests\Tag\UpdateTagRequest;
+use App\Http\Resources\TagResource;
+use App\Models\Tag;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class TagController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * عرض جميع الوسوم (متاح للجميع).
      */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
-        //
+        $tags = Tag::latest()->get();
+
+        return TagResource::collection($tags);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * إنشاء وسم جديد (متاح لمدير النظام فقط).
      */
-    public function store(Request $request)
+    public function store(StoreTagRequest $request): JsonResponse
     {
-        //
+        $tag = Tag::create($request->validated());
+
+        return (new TagResource($tag))
+            ->response()
+            ->setStatusCode(201);
     }
 
     /**
-     * Display the specified resource.
+     * عرض وسم محدد (متاح للجميع).
      */
-    public function show(string $id)
+    public function show(Tag $tag): TagResource
     {
-        //
+        return new TagResource($tag);
     }
 
     /**
-     * Update the specified resource in storage.
+     * تعديل وسم محدد (متاح لمدير النظام فقط).
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateTagRequest $request, Tag $tag): TagResource
     {
-        //
+        $tag->update($request->validated());
+
+        return new TagResource($tag);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * حذف وسم محدد (متاح لمدير النظام فقط).
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, Tag $tag): JsonResponse
     {
-        //
+        if (! $request->user()?->is_admin) {
+            return response()->json(['message' => 'This action is unauthorized.'], 403);
+        }
+
+        $tag->delete();
+
+        return response()->json([
+            'message' => 'Tag deleted successfully.',
+        ], 200);
     }
 }

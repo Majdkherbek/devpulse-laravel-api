@@ -8,12 +8,12 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 class TagCollection extends ResourceCollection
 {
     /**
-     * Transform the resource collection into an array.
-     *
-     * @return array<int|string, mixed>
+     * تشكيل وتغليف قائمة الوسوم المرجعة.
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'data' => TagResource::collection($this->collection),
+        ];
     }
 }

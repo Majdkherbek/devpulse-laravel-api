@@ -2,28 +2,29 @@
 
 namespace App\Http\Requests\Tag;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateTagRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * السماح فقط لمدير النظام (Admin) بتعديل الوسوم.
      */
     public function authorize(): bool
     {
-        return false;
+        return (bool) $this->user()?->is_admin;
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, ValidationRule|array<mixed>|string>
+     * شروط التحقق عند تعديل وسم موجود.
      */
     public function rules(): array
     {
+        $tagId = $this->route('tag')?->id ?? $this->route('tag');
+
         return [
-            //
+            'name' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('tags', 'name')->ignore($tagId)],
+            'slug' => ['nullable', 'string', 'max:255', Rule::unique('tags', 'slug')->ignore($tagId)],
         ];
     }
 }

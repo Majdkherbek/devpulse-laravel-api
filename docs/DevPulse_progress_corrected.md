@@ -303,30 +303,18 @@ ________________________________________________
 
 ## Phase 5 - Tags
 
-### Feature 5.1 Tags CRUD
+### Feature 5.1 Tags CRUD & Post Tags
 
-Status: Pending
-
-Topics:
-- Create Tag
-- Update Tag
-- Delete Tag
-- List Tags
-- Validation
-- Testing
-
----
-
-### Feature 5.2 Post Tags
-
-Status: Pending
+Status: Completed
 
 Topics:
-- Attach Tags
-- Sync Tags
-- Detach Tags
-- Many-to-Many Relationship
-- Testing
+- ✅ Create Tag (Admin Only)
+- ✅ Update Tag (Admin Only)
+- ✅ Delete Tag (Admin Only)
+- ✅ List Tags & Show Tag (Public)
+- ✅ Validation (StoreTagRequest & UpdateTagRequest)
+- ✅ API Resources (TagResource & TagCollection)
+- ✅ Many-to-Many Relationship (post_tag pivot table & sync/attach)
 
 ________________________________________________
 
