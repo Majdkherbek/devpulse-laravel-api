@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\TagController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,9 @@ Route::get('/posts/{post}', [PostController::class, 'show']);
 
 Route::get('/tags', [TagController::class, 'index']);
 Route::get('/tags/{tag}', [TagController::class, 'show']);
+
+// مسار استعراض تعليقات مقال محدد (عام)
+Route::get('/posts/{post}/comments', [CommentController::class, 'index']);
 
 // Protected Routes (مسارات تتطلب تسجيل الدخول بـ Sanctum)
 Route::middleware('auth:sanctum')->group(function () {
@@ -40,4 +44,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/posts', [PostController::class, 'store']);
     Route::put('/posts/{post}', [PostController::class, 'update']);
     Route::delete('/posts/{post}', [PostController::class, 'destroy']);
+
+    // مسارات التعليقات (محمية للمستخدمين والمالكين)
+    Route::post('/posts/{post}/comments', [CommentController::class, 'store']);
+    Route::put('/comments/{comment}', [CommentController::class, 'update']);
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
 });

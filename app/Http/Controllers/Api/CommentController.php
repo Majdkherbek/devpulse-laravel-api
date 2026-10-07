@@ -3,47 +3,65 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Comment\StoreCommentRequest;
+use App\Http\Requests\Comment\UpdateCommentRequest;
+use App\Http\Resources\CommentResource;
+use App\Models\Comment;
+use App\Models\Post;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * عرض جميع التعليقات الخاصة بمقال محدد (متاح للجميع).
      */
-    public function index()
+    public function index(Post $post): AnonymousResourceCollection
     {
-        //
+        $comments = $post->comments()->with('user')->latest()->get();
+
+        return CommentResource::collection($comments);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * إضافة تعليق جديد على مقال محدد.
      */
-    public function store(Request $request)
+    public function store(StoreCommentRequest $request, Post $post): JsonResponse
     {
-        //
+        $data = $request->validated();
+        $data['user_id'] = $request->user()->id;
+        $data['post_id'] = $post->id;
+
+        $comment = Comment::create($data);
+
+        return (new CommentResource($comment->load('user')))
+            ->response()
+            ->setStatusCode(201);
     }
 
     /**
-     * Display the specified resource.
+     * تعديل تعليق محدد مع التحقق من الملكية عبر Policy.
      */
-    public function show(string $id)
+    public function update(UpdateCommentRequest $request, Comment $comment): CommentResource
     {
-        //
+        $comment->update($request->validated());
+
+        return new CommentResource($comment->load('user'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * حذف تعليق محدد مع التحقق من الملكية عبر Policy.
      */
-    public function update(Request $request, string $id)
+    public function destroy(Request $request, Comment $comment): JsonResponse
     {
-        //
-    }
+        Gate::authorize('delete', $comment);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $comment->delete();
+
+        return response()->json([
+            'message' => 'Comment deleted successfully.',
+        ], 200);
     }
 }

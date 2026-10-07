@@ -112,8 +112,8 @@ Reason: أفضل للتعلم والصيانة.
 
 ## Current State
 
-Phase: 5 - Tags Module
+Phase: 6 - Comments Module
 
-Completed: User Registration, User Login, User Logout, Authenticated User, Authorization & Policies, Categories CRUD, Posts CRUD & Image Uploads, Tags CRUD & Many-to-Many Relationships (Phase 5 Complete! ✅)
+Completed: User Registration, User Login, User Logout, Authenticated User, Authorization & Policies, Categories CRUD, Posts CRUD & Image Uploads, Tags CRUD & Many-to-Many Relationships, Comments CRUD & Policies Authorization (Phase 6 Complete! ✅)
 
-Next: Phase 6 - Feature 6.1: Comments CRUD
+Next: Phase 7 - Search & Filtering Engine

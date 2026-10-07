@@ -320,28 +320,18 @@ ________________________________________________
 
 ## Phase 6 - Comments
 
-### Feature 6.1 Comments CRUD
+### Feature 6.1 Comments CRUD & Authorization
 
-Status: Pending
-
-Topics:
-- Create Comment
-- Update Comment
-- Delete Comment
-- List Comments
-- Validation
-- Testing
-
----
-
-### Feature 6.2 Comment Authorization
-
-Status: Pending
+Status: Completed
 
 Topics:
-- Comment Ownership
-- Policies
-- Testing
+- ✅ Create Comment on Post (Authenticated Users)
+- ✅ Update Comment (Owner / Admin Only via CommentPolicy)
+- ✅ Delete Comment (Owner / Admin Only via CommentPolicy)
+- ✅ List Comments for a Post (Public Read)
+- ✅ Validation (StoreCommentRequest & UpdateCommentRequest)
+- ✅ API Resources (CommentResource)
+- ✅ Comment Ownership & Policies
 
 ________________________________________________
 
