@@ -16,24 +16,21 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
     /**
-     * عرض قائمة المقالات مع الترقيم والفلترة وحل مشكلة N+1.
+     * عرض قائمة المقالات مع محرك البحث والفلترة والترتيب والترقيم المتقدم.
      */
     public function index(Request $request): PostCollection
     {
-        $query = Post::with(['user', 'category', 'tags'])->latest();
+        // تحديد عدد العناصر في الصفحة مع وضع حد أقصى بـ 50 للحماية
+        $perPage = min((int) $request->query('per_page', 10), 50);
 
-        // فلترة المقالات حسب التصنيف إن وُجد
-        if ($request->has('category_id')) {
-            $query->where('category_id', $request->query('category_id'));
-        }
-
-        // البحث بالنص في عنوان المقال
-        if ($request->has('search')) {
-            $search = $request->query('search');
-            $query->where('title', 'like', "%{$search}%");
-        }
-
-        $posts = $query->paginate(10);
+        $posts = Post::with(['user', 'category', 'tags'])
+            ->filter($request->only([
+                'search', 'category_id', 'category_slug',
+                'tag_id', 'tag_slug', 'user_id',
+                'sort_by', 'sort_dir',
+            ]))
+            ->paginate($perPage)
+            ->withQueryString();
 
         return new PostCollection($posts);
     }
